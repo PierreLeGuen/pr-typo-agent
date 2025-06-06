@@ -1,0 +1,48 @@
+name: pr-typo-agent
+summary: AI-powered PR review agent for automated code review and typo detection
+environment_variables:
+  - name: GITHUB_TOKEN
+    value: <your_github_personal_access_token_here>
+    description: Your GitHub Personal Access Token with repo permissions. Required for the agent to authenticate with the GitHub API.
+  - name: GITHUB_WEBHOOK_SECRET
+    value: ""
+    description: Optional GitHub webhook secret for advanced integrations and validating webhook payloads.
+  - name: AI_PROVIDER
+    value: openai
+    description: Choose your AI provider for reviews ("openai" or "anthropic").
+  - name: OPENAI_API_KEY
+    value: <your_openai_api_key_here>
+    description: The OpenAI API key to use for the agent. Required if AI_PROVIDER is set to "openai".
+  - name: ANTHROPIC_API_KEY
+    value: ""
+    description: The Anthropic API key to use for the agent. Required if AI_PROVIDER is set to "anthropic".
+  - name: REVIEW_TYPOS
+    value: "true"
+    description: Enable or disable typo and grammar reviews (true/false).
+  - name: REVIEW_CODE_QUALITY
+    value: "true"
+    description: Enable or disable AI-powered code quality reviews (true/false).
+  - name: REVIEW_SECURITY
+    value: "true"
+    description: Enable or disable security vulnerability checks (true/false).
+  - name: AUTO_APPROVE_MINOR
+    value: "false"
+    description: Automatically approve PRs with no issues found (true/false).
+  - name: MAX_FILES_PER_REVIEW
+    value: "50"
+    description: Maximum number of files to review per PR.
+  - name: MAX_LINES_PER_FILE
+    value: "1000"
+    description: Maximum lines to review per file.
+  - name: WATCHED_REPOSITORIES
+    value: ""
+    description: Comma-separated list of repositories to monitor (e.g., owner/repo,owner/repo2).
+  - name: AGENT_NAME
+    value: PR Review Bot
+    description: The name that appears in PR comments.
+  - name: POLLING_INTERVAL
+    value: "300"
+    description: How often to check for new PRs (in seconds).
+  - name: MAX_RETRIES
+    value: "3"
+    description: Maximum retries for API calls.
