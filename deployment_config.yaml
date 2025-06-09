@@ -1,0 +1,51 @@
+name: PR Review Agent
+summary: AI-powered pull request review agent for automated code review, typo detection, and security analysis.
+environment_variables:
+  - name: GITHUB_TOKEN
+    value: <your_github_personal_access_token>
+    description: Your GitHub Personal Access Token with 'repo' permissions. Required for authenticating with the GitHub API.
+  - name: GITHUB_WEBHOOK_SECRET
+    value: ""
+    description: Optional GitHub webhook secret for advanced integrations.
+  - name: AI_PROVIDER
+    value: openai
+    description: Choose your AI service provider for reviews. Options: "openai" or "anthropic".
+  - name: OPENAI_API_KEY
+    value: <your_openai_api_key>
+    description: Your API key for OpenAI. Required if AI_PROVIDER is set to "openai".
+  - name: ANTHROPIC_API_KEY
+    value: ""
+    description: Your API key for Anthropic. Required if AI_PROVIDER is set to "anthropic".
+  - name: REVIEW_TYPOS
+    value: "true"
+    description: Set to 'true' to enable typo and grammar detection in reviews, 'false' to disable.
+  - name: REVIEW_CODE_QUALITY
+    value: "true"
+    description: Set to 'true' to enable AI-based code quality reviews, 'false' to disable.
+  - name: REVIEW_SECURITY
+    value: "true"
+    description: Set to 'true' to enable security vulnerability detection in reviews, 'false' to disable.
+  - name: REVIEW_PERFORMANCE
+    value: "false"
+    description: Set to 'true' to enable performance-related reviews, 'false' to disable.
+  - name: AUTO_APPROVE_MINOR
+    value: "false"
+    description: Set to 'true' to automatically approve pull requests if no issues are found.
+  - name: MAX_FILES_PER_REVIEW
+    value: "50"
+    description: The maximum number of files the agent will process and review per pull request.
+  - name: MAX_LINES_PER_FILE
+    value: "1000"
+    description: The maximum number of lines within a file that the agent will review.
+  - name: WATCHED_REPOSITORIES
+    value: ""
+    description: A comma-separated list of GitHub repositories (e.g., 'owner/repo,owner/repo2') that the agent should monitor for new pull requests.
+  - name: AGENT_NAME
+    value: PR Review Bot
+    description: The name that the PR Review Agent will use when posting comments on pull requests.
+  - name: POLLING_INTERVAL
+    value: "300"
+    description: The frequency (in seconds) at which the agent checks for new pull requests in the watched repositories.
+  - name: MAX_RETRIES
+    value: "3"
+    description: The maximum number of retries the agent will attempt for failed API calls.
