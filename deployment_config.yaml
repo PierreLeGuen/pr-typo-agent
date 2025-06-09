@@ -1,0 +1,48 @@
+name: PR Review Agent
+summary: AI-powered PR review agent for automated code review and typo detection
+environment_variables:
+  - name: GITHUB_TOKEN
+    value: <your_github_personal_access_token>
+    description: A GitHub Personal Access Token with repo permissions, used for authenticating API requests to GitHub. Required.
+  - name: GITHUB_WEBHOOK_SECRET
+    value: ""
+    description: An optional GitHub webhook secret, likely used for validating incoming webhook payloads for advanced integrations.
+  - name: AI_PROVIDER
+    value: openai
+    description: Specifies which AI service provider to use for AI-powered reviews. Expected values are "openai" or "anthropic". Defaults to "openai".
+  - name: OPENAI_API_KEY
+    value: <your_openai_api_key>
+    description: The API key for OpenAI, required if AI_PROVIDER is set to "openai".
+  - name: ANTHROPIC_API_KEY
+    value: ""
+    description: The API key for Anthropic, required if AI_PROVIDER is set to "anthropic".
+  - name: REVIEW_TYPOS
+    value: "true"
+    description: A boolean flag (true/false) to enable or disable typo and grammar review. Defaults to "true".
+  - name: REVIEW_CODE_QUALITY
+    value: "true"
+    description: A boolean flag (true/false) to enable or disable AI-based code quality review. Defaults to "true".
+  - name: REVIEW_SECURITY
+    value: "true"
+    description: A boolean flag (true/false) to enable or disable security pattern detection review. Defaults to "true".
+  - name: AUTO_APPROVE_MINOR
+    value: "false"
+    description: A boolean flag (true/false) to automatically approve pull requests if no issues are found. Defaults to "false".
+  - name: MAX_FILES_PER_REVIEW
+    value: "50"
+    description: The maximum number of files the agent will review per pull request. Defaults to 50.
+  - name: MAX_LINES_PER_FILE
+    value: "1000"
+    description: The maximum number of lines to review per file. Defaults to 1000.
+  - name: WATCHED_REPOSITORIES
+    value: ""
+    description: A comma-separated list of GitHub repositories (in owner/repo format) that the agent should monitor for new pull requests. Example: "octocat/Spoon-Knife,myorg/myrepo"
+  - name: AGENT_NAME
+    value: PR Review Bot
+    description: The name that the agent will use in its PR comments. Defaults to "PR Review Bot".
+  - name: POLLING_INTERVAL
+    value: "300"
+    description: How often (in seconds) the agent should check for new pull requests. Defaults to 300 seconds (5 minutes).
+  - name: MAX_RETRIES
+    value: "3"
+    description: The maximum number of retries for API calls. Defaults to 3.
