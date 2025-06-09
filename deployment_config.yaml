@@ -1,0 +1,48 @@
+name: PR Review Agent
+summary: AI-powered PR review agent for automated code review, typo detection, and security analysis. It monitors specified GitHub repositories and provides feedback on pull requests.
+environment_variables:
+  - name: GITHUB_TOKEN
+    value: <your_github_personal_access_token>
+    description: Your GitHub Personal Access Token with repo permissions. Required for authenticating with the GitHub API.
+  - name: GITHUB_WEBHOOK_SECRET
+    value: ""
+    description: Optional secret for GitHub webhooks. Leave empty if not using webhooks.
+  - name: AI_PROVIDER
+    value: openai
+    description: Choose your AI provider. Accepted values are "openai" or "anthropic".
+  - name: OPENAI_API_KEY
+    value: <your_openai_api_key>
+    description: The OpenAI API key to use. Required if AI_PROVIDER is set to "openai".
+  - name: ANTHROPIC_API_KEY
+    value: <your_anthropic_api_key>
+    description: The Anthropic API key to use. Required if AI_PROVIDER is set to "anthropic".
+  - name: REVIEW_TYPOS
+    value: "true"
+    description: Set to "true" to enable typo and grammar detection review.
+  - name: REVIEW_CODE_QUALITY
+    value: "true"
+    description: Set to "true" to enable AI-powered code quality review.
+  - name: REVIEW_SECURITY
+    value: "true"
+    description: Set to "true" to enable security pattern detection review.
+  - name: AUTO_APPROVE_MINOR
+    value: "false"
+    description: Set to "true" to automatically approve PRs if no issues are found.
+  - name: MAX_FILES_PER_REVIEW
+    value: "50"
+    description: The maximum number of files the agent will review per pull request.
+  - name: MAX_LINES_PER_FILE
+    value: "1000"
+    description: The maximum number of lines the agent will review per file.
+  - name: WATCHED_REPOSITORIES
+    value: ""
+    description: A comma-separated list of GitHub repositories to monitor (e.g., "owner/repo,owner/repo2").
+  - name: AGENT_NAME
+    value: PR Review Bot
+    description: The name that appears in PR comments made by the agent.
+  - name: POLLING_INTERVAL
+    value: "300"
+    description: How often (in seconds) the agent checks for new PRs in watched repositories.
+  - name: MAX_RETRIES
+    value: "3"
+    description: Maximum number of retries for API calls in case of transient errors.
