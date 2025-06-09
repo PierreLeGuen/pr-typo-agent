@@ -1,0 +1,49 @@
+stdin: false # The agent runs as a background process, periodically polling GitHub, and is configured via environment variables or command-line arguments, not continuous stdin input.
+name: PR Review Agent
+summary: An AI-powered agent for automated pull request review, including code quality, security, and typo detection. It monitors specified GitHub repositories and provides feedback on new PRs.
+environment_variables:
+  - name: GITHUB_TOKEN
+    value: <your_github_personal_access_token>
+    description: Your GitHub Personal Access Token with `repo` permissions. This is required for the agent to authenticate with the GitHub API, fetch PRs, and post comments. Get one at https://github.com/settings/tokens.
+  - name: GITHUB_WEBHOOK_SECRET
+    value: ""
+    description: An optional secret used to verify GitHub webhook payloads, enhancing security for advanced integrations. Leave empty if not using webhooks.
+  - name: AI_PROVIDER
+    value: openai
+    description: Specifies which AI service provider to use for AI-powered reviews. Supported values are "openai" or "anthropic".
+  - name: OPENAI_API_KEY
+    value: <your_openai_api_key>
+    description: Your OpenAI API Key, required if `AI_PROVIDER` is set to "openai". Get one at https://platform.openai.com/api-keys.
+  - name: ANTHROPIC_API_KEY
+    value: ""
+    description: Your Anthropic API Key, required if `AI_PROVIDER` is set to "anthropic". Get one at https://console.anthropic.com/.
+  - name: REVIEW_TYPOS
+    value: "true"
+    description: A boolean flag (`true`/`false`) to enable or disable the typo and grammar review feature.
+  - name: REVIEW_CODE_QUALITY
+    value: "true"
+    description: A boolean flag (`true`/`false`) to enable or disable AI-based code quality reviews.
+  - name: REVIEW_SECURITY
+    value: "true"
+    description: A boolean flag (`true`/`false`) to enable or disable security pattern detection reviews.
+  - name: AUTO_APPROVE_MINOR
+    value: "false"
+    description: A boolean flag (`true`/`false`) to automatically approve pull requests if no issues are found by the agent.
+  - name: MAX_FILES_PER_REVIEW
+    value: "50"
+    description: An integer specifying the maximum number of files the agent will review per pull request to prevent excessive processing.
+  - name: MAX_LINES_PER_FILE
+    value: "1000"
+    description: An integer specifying the maximum number of lines within a file that the agent will review, to control review scope.
+  - name: WATCHED_REPOSITORIES
+    value: ""
+    description: A comma-separated list of GitHub repositories (in `owner/repo` format) that the agent should monitor for new pull requests. Example: `myorg/myrepo1,myorg/myrepo2`.
+  - name: AGENT_NAME
+    value: PR Review Bot
+    description: The name that the PR Review Agent will use when posting comments on pull requests.
+  - name: POLLING_INTERVAL
+    value: "300"
+    description: An integer representing how often (in seconds) the agent should check for new pull requests in the `WATCHED_REPOSITORIES`.
+  - name: MAX_RETRIES
+    value: "3"
+    description: An integer specifying the maximum number of retries the agent will attempt for failed API calls.
