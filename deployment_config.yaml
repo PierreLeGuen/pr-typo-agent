@@ -4,45 +4,48 @@ environment_variables:
   - name: GITHUB_TOKEN
     value: <your_github_personal_access_token>
     description: A GitHub Personal Access Token with 'repo' permissions, used for authenticating with the GitHub API. Get one at https://github.com/settings/tokens.
-  - name: AI_PROVIDER
-    value: openai
-    description: The AI service provider to use for code quality and typo reviews. Choose "openai" or "anthropic".
-  - name: OPENAI_API_KEY
-    value: <your_openai_api_key>
-    description: The OpenAI API key. This is required if AI_PROVIDER is set to "openai". Get one at https://platform.openai.com/api-keys.
-  - name: ANTHROPIC_API_KEY
-    value: <your_anthropic_api_key>
-    description: The Anthropic API key. This is required if AI_PROVIDER is set to "anthropic". Get one at https://console.anthropic.com/.
-  - name: WATCHED_REPOSITORIES
-    value: <owner/repo,owner/repo2>
-    description: A comma-separated list of GitHub repositories (e.g., 'owner/repo,owner/repo2') that the agent should monitor for new pull requests.
   - name: GITHUB_WEBHOOK_SECRET
     value: ""
     description: An optional secret used for validating GitHub webhook payloads for advanced integrations. Leave empty if not using webhooks.
+  - name: AI_PROVIDER
+    value: openai
+    description: Specifies the AI service provider to use for code quality and typo reviews. Expected values are "openai" or "anthropic".
+  - name: OPENAI_API_KEY
+    value: <your_openai_api_key>
+    description: The API key for OpenAI, required if AI_PROVIDER is set to "openai".
+  - name: ANTHROPIC_API_KEY
+    value: <your_anthropic_api_key>
+    description: The API key for Anthropic, required if AI_PROVIDER is set to "anthropic".
   - name: REVIEW_TYPOS
     value: "true"
-    description: Set to "true" to enable typo and grammar review, "false" to disable. Defaults to "true".
+    description: A boolean flag (true/false) to enable or disable typo and grammar review.
   - name: REVIEW_CODE_QUALITY
     value: "true"
-    description: Set to "true" to enable AI-powered code quality review, "false" to disable. Defaults to "true".
+    description: A boolean flag (true/false) to enable or disable AI-powered code quality review.
   - name: REVIEW_SECURITY
     value: "true"
-    description: Set to "true" to enable security vulnerability review, "false" to disable. Defaults to "true".
+    description: A boolean flag (true/false) to enable or disable security vulnerability review.
+  - name: REVIEW_PERFORMANCE
+    value: "false"
+    description: A boolean flag (true/false) to enable or disable performance review.
   - name: AUTO_APPROVE_MINOR
     value: "false"
-    description: Set to "true" to automatically approve pull requests where no issues are found. Defaults to "false".
+    description: A boolean flag (true/false) to automatically approve pull requests where no issues are found.
   - name: MAX_FILES_PER_REVIEW
     value: "50"
-    description: The maximum number of files the agent will review per pull request. Defaults to 50.
+    description: The maximum number of files the agent will review per pull request.
   - name: MAX_LINES_PER_FILE
     value: "1000"
-    description: The maximum number of lines per file that the agent will review. Defaults to 1000.
+    description: The maximum number of lines per file that the agent will review.
+  - name: WATCHED_REPOSITORIES
+    value: <owner/repo,owner/repo2>
+    description: A comma-separated list of GitHub repositories (e.g., 'owner/repo,owner/repo2') that the agent should monitor for new pull requests.
   - name: AGENT_NAME
     value: PR Review Bot
-    description: The name that the PR Review Agent will use when posting comments on pull requests. Defaults to "PR Review Bot".
+    description: The name the PR Review Agent will use when posting comments on pull requests.
   - name: POLLING_INTERVAL
     value: "300"
-    description: How often (in seconds) the agent should check for new pull requests. Defaults to 300 seconds (5 minutes).
+    description: How often (in seconds) the agent should check for new pull requests.
   - name: MAX_RETRIES
     value: "3"
-    description: The maximum number of retries for API calls in case of failures. Defaults to 3.
+    description: The maximum number of retries for API calls in case of failures.
