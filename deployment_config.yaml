@@ -4,6 +4,9 @@ environment_variables:
   - name: GITHUB_TOKEN
     value: <your_github_personal_access_token>
     description: A GitHub Personal Access Token with 'repo' permissions, used for authenticating with the GitHub API. Get one at https://github.com/settings/tokens.
+  - name: GITHUB_WEBHOOK_SECRET
+    value: ""
+    description: An optional secret used for validating GitHub webhook payloads for advanced integrations. Leave empty if not using webhooks.
   - name: AI_PROVIDER
     value: openai
     description: The AI service provider to use for code quality and typo reviews. Choose "openai" or "anthropic".
@@ -13,12 +16,6 @@ environment_variables:
   - name: ANTHROPIC_API_KEY
     value: <your_anthropic_api_key>
     description: The Anthropic API key. This is required if AI_PROVIDER is set to "anthropic". Get one at https://console.anthropic.com/.
-  - name: WATCHED_REPOSITORIES
-    value: <owner/repo,owner/repo2>
-    description: A comma-separated list of GitHub repositories (e.g., 'owner/repo,owner/repo2') that the agent should monitor for new pull requests.
-  - name: GITHUB_WEBHOOK_SECRET
-    value: ""
-    description: An optional secret used for validating GitHub webhook payloads for advanced integrations. Leave empty if not using webhooks.
   - name: REVIEW_TYPOS
     value: "true"
     description: Set to "true" to enable typo and grammar review, "false" to disable. Defaults to "true".
@@ -37,12 +34,15 @@ environment_variables:
   - name: MAX_LINES_PER_FILE
     value: "1000"
     description: The maximum number of lines per file that the agent will review. Defaults to 1000.
+  - name: WATCHED_REPOSITORIES
+    value: <owner/repo,owner/repo2>
+    description: A comma-separated list of GitHub repositories (e.g., 'owner/repo,owner/repo2') that the agent should monitor for new pull requests.
   - name: AGENT_NAME
     value: PR Review Bot
     description: The name that the PR Review Agent will use when posting comments on pull requests. Defaults to "PR Review Bot".
   - name: POLLING_INTERVAL
     value: "300"
-    description: How often (in seconds) the agent should check for new pull requests. Defaults to 300 seconds (5 minutes).
+    description: How often (in seconds) the agent should check for new pull requests when running in polling mode. Defaults to 300 seconds (5 minutes).
   - name: MAX_RETRIES
     value: "3"
     description: The maximum number of retries for API calls in case of failures. Defaults to 3.
