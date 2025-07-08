@@ -1,47 +1,26 @@
 ### PR Review Agent
 
-The PR Review Agent is an AI-powered tool designed to automate and enhance the pull request review process on GitHub. It monitors specified repositories for new pull requests and performs comprehensive reviews, providing feedback directly on GitHub.
+The PR Review Agent is an AI-powered tool designed to automate and enhance the pull request review process on GitHub. It monitors specified repositories for new or updated pull requests and performs comprehensive reviews, providing feedback directly on GitHub.
 
-#### Functionality
+**Main Functions:**
 
-*   **Automated PR Review**: Continuously monitors designated GitHub repositories for new or updated pull requests.
-*   **Typo and Grammar Detection**: Identifies spelling and grammar errors in code comments, documentation, and string literals, suggesting corrections.
-*   **AI-Powered Code Quality Review**: Utilizes large language models (LLMs) to analyze code for quality, readability, performance issues, and best practice violations.
-*   **Security Vulnerability Scanning**: Scans code for common security risks such as hardcoded secrets, potential SQL injection, command injection, and weak cryptographic algorithms.
-*   **Detailed Feedback**: Posts inline comments on specific lines of code where issues are found and provides a summary comment for the entire pull request.
-*   **Configurable Behavior**: Allows users to enable/disable specific review types (typos, code quality, security), set limits on file and line review counts, and configure polling intervals.
-*   **Optional Auto-Approval**: Can be configured to automatically approve pull requests where no issues are detected.
-*   **Single PR Review**: Supports reviewing a specific pull request on demand, in addition to continuous monitoring.
+*   **Automated PR Monitoring:** Continuously checks designated GitHub repositories for new or updated pull requests.
+*   **Intelligent Code Review:** Utilizes AI models (OpenAI or Anthropic) to analyze code for quality, best practices, and potential issues.
+*   **Typo and Grammar Detection:** Scans new code additions for spelling and grammar errors, suggesting corrections.
+*   **Security Vulnerability Checks:** Identifies common security concerns and patterns within the code.
+*   **Detailed Feedback:** Posts inline comments on specific lines of code and a summary comment on the pull request, detailing any findings.
+*   **Conditional Approval:** Can be configured to automatically approve pull requests if no issues are detected.
+*   **Configurable Reviews:** Allows users to enable or disable specific review types (typos, code quality, security) based on their needs.
+*   **On-Demand Review:** Supports reviewing a specific pull request by providing its repository URL and PR number.
 
-#### Inputs
+**Inputs:**
 
-*   **GitHub API (Polling)**: The agent periodically fetches open pull requests and their associated files and comments from configured GitHub repositories.
-*   **CLI Arguments (stdin)**:
-    *   `start`: Initiates continuous monitoring of configured repositories.
-    *   `review <repo_url> <pr_number>`: Triggers a review for a specific pull request.
-    *   `setup`: Guides users through interactive configuration.
-*   **Environment Variables**: Configuration parameters loaded from a `.env` file or system environment, including GitHub tokens, AI API keys, and review preferences.
+*   **Environment Variables:** Configuration settings such as GitHub API token, AI provider API keys, list of repositories to monitor, review preferences (e.g., enable/disable typo checks, code quality, security), maximum files/lines to review, agent name, and polling interval.
+*   **GitHub API (Polling):** Automatically fetches pull request details and file changes from monitored repositories.
+*   **Command Line Arguments:** For reviewing a specific PR, the repository URL and pull request number are provided as arguments.
 
-#### Outputs
+**Outputs:**
 
-*   **GitHub PR Comments**: Posts inline comments on specific lines of code with identified issues (typos, code quality suggestions, security warnings).
-*   **GitHub PR Summary Comments**: Adds a comprehensive summary comment to the pull request, detailing the types and counts of issues found or confirming a clean review.
-*   **GitHub PR Approval**: Optionally approves pull requests if no issues are detected and auto-approval is enabled.
-*   **Console Output (stdout)**: Provides logs and status updates on the agent's operations, including errors and review progress.
-
-#### Configuration
-
-The agent is configured using environment variables, typically loaded from a `.env` file. Key configurable parameters include:
-
-*   `GITHUB_TOKEN`: Your GitHub Personal Access Token.
-*   `AI_PROVIDER`: Choice of AI model provider (e.g., `openai`, `anthropic`).
-*   `OPENAI_API_KEY` / `ANTHROPIC_API_KEY`: API key for the chosen AI provider.
-*   `REVIEW_TYPOS`: Enable/disable typo review.
-*   `REVIEW_CODE_QUALITY`: Enable/disable AI-powered code quality review.
-*   `REVIEW_SECURITY`: Enable/disable security review.
-*   `WATCHED_REPOSITORIES`: Comma-separated list of `owner/repo` to monitor.
-*   `AGENT_NAME`: The name displayed in PR comments.
-*   `POLLING_INTERVAL`: How often (in seconds) to check for new PRs.
-*   `MAX_FILES_PER_REVIEW`: Maximum files to review per PR.
-*   `MAX_LINES_PER_FILE`: Maximum lines to review per file.
-*   `AUTO_APPROVE_MINOR`: Enable/disable auto-approval for clean PRs.
+*   **GitHub Pull Request Comments:** Posts detailed comments on specific lines of code and a summary comment on the pull request itself, outlining detected issues and suggestions.
+*   **GitHub Pull Request Approvals:** If configured and no issues are found, the agent can approve the pull request.
+*   **Console/Log Output:** Provides real-time status updates and logging information on its operations.
